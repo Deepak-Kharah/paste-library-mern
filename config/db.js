@@ -5,7 +5,6 @@ require('dotenv').config();
 
 // Get password from env and replace within mongoURI
 db = config.get('mongoURI').replace('<password>', process.env.MONGODB_PASSWORD);
-console.log(db);
 
 const connectDB = async () => {
     try {
