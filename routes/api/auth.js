@@ -1,4 +1,7 @@
+const bcrypt = require('bcrypt');
 const express = require('express');
+const { check, validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
 
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
@@ -18,5 +21,55 @@ router.get('/', auth, async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+// @route   POST api/auth
+// @desc    Authenticate user and provide JWT (Login)
+// @access  Public
+router.post(
+    '/',
+    [
+        check('email', 'Please include a valid Email address').not().isEmpty().isEmail(),
+        check('password', 'Password is required').exists()
+    ],
+    async (req, res) => {
+        // Process Errors
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ error: errors.array() });
+        }
+
+        // Process data
+        const { email, password } = req.body;
+
+        try {
+            let user = await User.findOne({ email });
+
+            if (!user) {
+                res.status(404).json({ msg: 'Invalid Credentials' });
+            }
+
+            // Authenticate password
+            const isMatch = await bcrypt.compare(password, user.password);
+
+            if (!isMatch) {
+                res.status(404).json({ msg: 'Invalid Credentials' });
+            }
+
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            };
+
+            jwt.sign(payload, process.env.JWT_PASSWORD, { expiresIn: 36000 }, (err, token) => {
+                if (err) throw err;
+                res.json({ token });
+            }); //TODO: change to 3600 when in production
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send(`Server error: ${err.message}`);
+        }
+    }
+);
 
 module.exports = router;
