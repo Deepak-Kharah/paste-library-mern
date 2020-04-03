@@ -1,10 +1,11 @@
-const express = require('express');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const router = express.Router();
+const express = require('express');
 const { check, validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
 
 const User = require('../../models/User');
+
+const router = express.Router();
 
 // Validation
 function uniqueConstraintValidator(field, db_name) {
@@ -16,7 +17,7 @@ function uniqueConstraintValidator(field, db_name) {
 }
 
 // @route   POST api/users
-// @desc    Test route
+// @desc    register user
 // @access  Public
 router.post(
     '/',
