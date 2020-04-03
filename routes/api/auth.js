@@ -67,7 +67,7 @@ router.post(
             }); //TODO: change to 3600 when in production
         } catch (err) {
             console.error(err.message);
-            res.status(500).send(`Server error: ${err.message}`);
+            res.status(500).send('Server error');
         }
     }
 );
