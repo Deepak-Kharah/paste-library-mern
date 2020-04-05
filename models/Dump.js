@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const DumpSchema = mongoose.Schema(
     {
         title: {
-            type: String
+            type: String,
+            trim: true
         },
         text: {
             type: String,
@@ -18,7 +19,8 @@ const DumpSchema = mongoose.Schema(
         access: {
             type: String,
             enum: [ 'PVT', 'UNL' ],
-            uppercase: true
+            uppercase: true,
+            default: 'UNL'
         },
         has_expiration_date: {
             type: Boolean,
