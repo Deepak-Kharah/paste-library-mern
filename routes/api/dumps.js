@@ -68,4 +68,37 @@ router.post('/', [ optToken, [ check('text', 'Text is required').not().isEmpty()
     }
 });
 
+// @route   GET api/d/:slug
+// @desc    get respective dump from slug
+// @access  Public (with restriction)
+router.get('/:slug', optToken, async (req, res) => {
+    try {
+        let dump = await (await Dump.findOne({ slug: req.params.slug })).toObject();
+
+        console.log(dump);
+
+        if (!dump) {
+            return res.status(404).json({ msg: 'Dump not found' });
+        }
+
+        if (dump.access === 'PVT') {
+            if (!req.user) {
+                console.error('anonoym user');
+                return res.status(404).json({ msg: 'Dump not found' });
+            }
+            if (dump.user.toString() !== req.user.id) {
+                console.error('unknown user');
+                return res.status(404).json({ msg: 'Dump not found' });
+            }
+        }
+
+        if (dump.password) {
+        }
+
+        res.json(dump);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ msg: 'Server Error' });
+    }
+});
 module.exports = router;

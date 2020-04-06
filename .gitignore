@@ -170,3 +170,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/git,node,react,windows,visualstudiocode
+
+notes.txt
