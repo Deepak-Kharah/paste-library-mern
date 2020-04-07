@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 const nanoid = require('../../config/nanoid');
 
 const Dump = require('../../models/Dump');
+const auth = require('../../middleware/auth');
 const optToken = require('../../middleware/addOptionalToken');
 
 const router = express.Router();
@@ -73,13 +74,13 @@ router.post('/', [ optToken, [ check('text', 'Text is required').not().isEmpty()
 // @access  Public (with restriction)
 router.get('/:slug', optToken, async (req, res) => {
     try {
-        let dump = await (await Dump.findOne({ slug: req.params.slug })).toObject();
-
-        console.log(dump);
+        let dump = await await Dump.findOne({ slug: req.params.slug });
 
         if (!dump) {
             return res.status(404).json({ msg: 'Dump not found' });
         }
+
+        dump.toObject();
 
         if (dump.access === 'PVT') {
             if (!req.user) {
@@ -101,4 +102,32 @@ router.get('/:slug', optToken, async (req, res) => {
         res.status(500).json({ msg: 'Server Error' });
     }
 });
+
+// @route   DELETE api/d/:slug
+// @desc    delete dump by slug
+// @access  Private
+router.delete('/:slug', auth, async (req, res) => {
+    try {
+        const dump = await Dump.findOne({ slug: req.params.slug });
+
+        if (!dump) {
+            return res.status(404).json({ msg: 'Dump not found' });
+        }
+
+        if (dump.user.toString() !== req.user.id) {
+            if (dump.access === 'PVT') {
+                return res.status(404).json({ msg: 'Dump not found' });
+            } else {
+                return res.status(401).json({ msg: 'You cannot delete the dump' });
+            }
+        }
+
+        await dump.remove();
+        res.json({ msg: 'post deleted' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ msg: 'Server Error' });
+    }
+});
+
 module.exports = router;
