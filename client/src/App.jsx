@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
-import './App.css';
+
+import Navbar from './components/layout/Navbar';
 
 const App = () => (
     <Fragment>
+        <Navbar />
         <h1>hello world</h1>
     </Fragment>
 );
