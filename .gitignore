@@ -172,3 +172,4 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/git,node,react,windows,visualstudiocode
 
 notes.txt
+**/vendor/secret/*
