@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
-                <a className="navbar-brand" href="#">
+                <Link className="navbar-brand" to="/">
                     <span style={{ fontWeight: 'bold' }}>Paste</span>
                     <span className="text-info">library</span>
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -36,14 +37,14 @@ const Navbar = () => {
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <a className="btn btn-primary" href="#">
+                            <Link className="btn btn-primary" to="/register">
                                 Sign up
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" to="/login">
                                 Login
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
