@@ -24,14 +24,14 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarColor01">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" to="/about">
                                 About
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" to="/contact-us">
                                 Contact us
-                            </a>
+                            </Link>
                         </li>
                     </ul>
 
