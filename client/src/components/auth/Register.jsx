@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { setAlert } from '../../actions/alert';
 
 export class Register extends Component {
     state = {
@@ -8,12 +12,15 @@ export class Register extends Component {
         password: '',
         password2: ''
     };
+    static propTypes = {
+        setAlert: PropTypes.func.isRequired
+    };
 
     onSubmit = (e) => {
         const { password, password2 } = this.state;
         e.preventDefault();
         if (password !== password2) {
-            console.error('wrong password');
+            this.props.setAlert('Password does not match', 'danger');
         } else {
             console.log('submit');
         }
@@ -91,4 +98,4 @@ export class Register extends Component {
     }
 }
 
-export default Register;
+export default connect(null, { setAlert })(Register);
