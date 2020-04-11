@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import About from './components/promotion/About';
 import Alert from './components/layout/Alert';
@@ -24,9 +23,6 @@ class App extends Component {
         store.dispatch(loadUser());
         console.log('i am used');
     }
-    static propTypes = {
-        loadUser: PropTypes.func.isRequired
-    };
 
     render() {
         return (

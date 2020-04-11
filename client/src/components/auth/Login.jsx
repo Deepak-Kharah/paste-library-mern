@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { login } from '../../actions/auth';
 
 export class Login extends Component {
     state = {
-        username: '',
+        email: '',
         password: ''
     };
 
+    static propTypes = {
+        login: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool
+    };
+
     onSubmit = (e) => {
+        const { email, password } = this.state;
         e.preventDefault();
-        console.log('submit');
+        this.props.login(email, password);
     };
 
     onChange = (e) => {
@@ -17,20 +27,24 @@ export class Login extends Component {
     };
 
     render() {
-        const { username, password } = this.state;
+        const { email, password } = this.state;
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/dashboard" />;
+        }
         return (
             <div className="col-md-6 m-auto">
                 <div className="card card-body mt-5">
                     <h2 className="text-center">Login</h2>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label>Username</label>
+                            <label>Email</label>
                             <input
-                                type="text"
+                                type="email"
                                 className="form-control"
-                                name="username"
+                                name="email"
                                 onChange={this.onChange}
-                                value={username}
+                                value={email}
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -41,6 +55,7 @@ export class Login extends Component {
                                 className="form-control"
                                 onChange={this.onChange}
                                 value={password}
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -58,4 +73,8 @@ export class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);
