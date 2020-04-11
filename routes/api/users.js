@@ -65,11 +65,11 @@ router.post(
 
             jwt.sign(payload, process.env.JWT_PASSWORD, { expiresIn: 36000 }, (err, token) => {
                 if (err) throw err;
-                res.json({ token });
+                return res.json({ token });
             }); //TODO: change to 3600 when in production
         } catch (err) {
             console.error(err.message);
-            res.status(500).send('Server error');
+            return res.status(500).send('Server error');
         }
     }
 );

@@ -15,10 +15,10 @@ router.get('/', auth, async (req, res) => {
     try {
         // ensure to not return password
         const user = await User.findById(req.user.id).select('-password');
-        res.json(user);
+        return res.json(user);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        return res.status(500).send('Server Error');
     }
 });
 
@@ -45,14 +45,14 @@ router.post(
             let user = await User.findOne({ email });
 
             if (!user) {
-                res.status(400).json({ errors: [ { msg: 'Invalid Credentials' } ] });
+                return res.status(400).json({ errors: [ { msg: 'Invalid Credentials' } ] });
             }
 
             // Authenticate password
             const isMatch = await bcrypt.compare(password, user.password);
 
             if (!isMatch) {
-                res.status(400).json({ msg: 'Invalid Credentials' });
+                return res.status(400).json({ msg: 'Invalid Credentials' });
             }
 
             const payload = {
@@ -63,11 +63,11 @@ router.post(
 
             jwt.sign(payload, process.env.JWT_PASSWORD, { expiresIn: 36000 }, (err, token) => {
                 if (err) throw err;
-                res.json({ token });
+                return res.json({ token });
             }); //TODO: change to 3600 when in production
         } catch (err) {
             console.error(err.message);
-            res.status(500).send('Server error');
+            return res.status(500).send('Server error');
         }
     }
 );

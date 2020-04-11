@@ -62,10 +62,10 @@ router.post('/', [ optToken, [ check('text', 'Text is required').not().isEmpty()
             newDump.user = process.env.DEFAULT_USER_ID;
         }
         const dump = await newDump.save();
-        res.json(dump);
+        return res.json(dump);
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ errors: [ { msg: 'Server Error' } ] });
+        return res.status(500).json({ errors: [ { msg: 'Server Error' } ] });
     }
 });
 
@@ -94,12 +94,13 @@ router.get('/:slug', optToken, async (req, res) => {
         }
 
         if (dump.password) {
+            // TODO logic remaining for password in dump
         }
 
-        res.json(dump);
+        return res.json(dump);
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ msg: 'Server Error' });
+        return res.status(500).json({ msg: 'Server Error' });
     }
 });
 
@@ -117,16 +118,15 @@ router.delete('/:slug', auth, async (req, res) => {
         if (dump.user.toString() !== req.user.id) {
             if (dump.access === 'PVT') {
                 return res.status(404).json({ msg: 'Dump not found' });
-            } else {
-                return res.status(401).json({ msg: 'You cannot delete the dump' });
             }
+            return res.status(401).json({ msg: 'You cannot delete the dump' });
         }
 
         await dump.remove();
-        res.json({ msg: 'post deleted' });
+        return res.json({ msg: 'post deleted' });
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ msg: 'Server Error' });
+        return res.status(500).json({ msg: 'Server Error' });
     }
 });
 

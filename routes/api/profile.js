@@ -37,10 +37,10 @@ router.post('/', auth, async (req, res) => {
             { $set: profileFields },
             { new: true, upsert: true }
         );
-        res.json(profile);
+        return res.json(profile);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        return res.status(500).send('Server Error');
     }
 });
 
@@ -55,10 +55,10 @@ router.delete('/', auth, async (req, res) => {
 
         // Delete user
         await User.findOneAndDelete({ _id: req.user.id });
-        res.json({ msg: 'User deleted' });
+        return res.json({ msg: 'User deleted' });
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error');
+        return res.status(500).send('Server Error');
     }
 });
 module.exports = router;

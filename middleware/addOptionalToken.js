@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
         if (token) {
             jwt.verify(token, process.env.JWT_PASSWORD, (error, decoded) => {
                 if (error) {
-                    res.status(401).json({ msg: 'Token is not valid' });
+                    return res.status(401).json({ errors: [ { msg: 'Token is not valid' } ] });
                 } else {
                     req.user = decoded.user;
                 }
@@ -18,6 +18,6 @@ module.exports = function(req, res, next) {
         next();
     } catch (err) {
         console.error('something wrong with add optional token middleware');
-        res.status(500).json({ msg: 'Server Error' });
+        return res.status(500).send('Server Error');
     }
 };
