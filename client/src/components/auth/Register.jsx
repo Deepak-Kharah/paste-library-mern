@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 
 export class Register extends Component {
     state = {
@@ -13,16 +14,19 @@ export class Register extends Component {
         password2: ''
     };
     static propTypes = {
-        setAlert: PropTypes.func.isRequired
+        setAlert: PropTypes.func.isRequired,
+        register: PropTypes.func.isRequired
     };
 
-    onSubmit = (e) => {
-        const { password, password2 } = this.state;
+    onSubmit = async (e) => {
+        const { username, email, password, password2 } = this.state;
         e.preventDefault();
-        if (password !== password2) {
+        if (!password || !password2) {
+            this.props.setAlert('Password is required.');
+        } else if (password !== password2) {
             this.props.setAlert('Password does not match', 'danger');
         } else {
-            console.log('submit');
+            this.props.register({ username, email, password });
         }
     };
 
@@ -80,7 +84,7 @@ export class Register extends Component {
                                 className="form-control"
                                 onChange={this.onChange}
                                 value={password2}
-                                required
+                                // required
                             />
                         </div>
                         <div className="form-group">
@@ -98,4 +102,4 @@ export class Register extends Component {
     }
 }
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
