@@ -35,7 +35,7 @@ router.post(
         // Process Errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ error: errors.array() });
+            return res.status(400).json({ errors: errors.array() });
         }
 
         // Process data
@@ -45,14 +45,14 @@ router.post(
             let user = await User.findOne({ email });
 
             if (!user) {
-                res.status(404).json({ msg: 'Invalid Credentials' });
+                res.status(400).json({ errors: [ { msg: 'Invalid Credentials' } ] });
             }
 
             // Authenticate password
             const isMatch = await bcrypt.compare(password, user.password);
 
             if (!isMatch) {
-                res.status(404).json({ msg: 'Invalid Credentials' });
+                res.status(400).json({ msg: 'Invalid Credentials' });
             }
 
             const payload = {

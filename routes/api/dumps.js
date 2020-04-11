@@ -65,7 +65,7 @@ router.post('/', [ optToken, [ check('text', 'Text is required').not().isEmpty()
         res.json(dump);
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ msg: 'Server Error' });
+        res.status(500).json({ errors: [ { msg: 'Server Error' } ] });
     }
 });
 
@@ -77,7 +77,7 @@ router.get('/:slug', optToken, async (req, res) => {
         let dump = await await Dump.findOne({ slug: req.params.slug });
 
         if (!dump) {
-            return res.status(404).json({ msg: 'Dump not found' });
+            return res.status(404).jsono({ errors: [ { msg: 'Dump not fund' } ] });
         }
 
         dump.toObject();
@@ -85,11 +85,11 @@ router.get('/:slug', optToken, async (req, res) => {
         if (dump.access === 'PVT') {
             if (!req.user) {
                 console.error('anonoym user');
-                return res.status(404).json({ msg: 'Dump not found' });
+                return res.status(404).json({ errors: [ { msg: 'Dump not found' } ] });
             }
             if (dump.user.toString() !== req.user.id) {
                 console.error('unknown user');
-                return res.status(404).json({ msg: 'Dump not found' });
+                return res.status(404).json({ errors: [ { msg: 'Dump not found' } ] });
             }
         }
 
