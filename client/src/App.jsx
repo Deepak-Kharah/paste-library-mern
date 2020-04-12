@@ -9,6 +9,8 @@ import Home from './components/layout/Home';
 import Login from './components/auth/Login';
 import Navbar from './components/layout/Navbar';
 import Register from './components/auth/Register';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
@@ -37,6 +39,7 @@ class App extends Component {
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/contact-us" component={ContactUs} />
                             <Route exact path="/about" component={About} />
+                            <PrivateRoute exact path="/dashboard" component={Dashboard} />
                         </Switch>
                     </div>
                 </Router>
