@@ -1,7 +1,58 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const Navbar = () => {
+import { logout } from '../../actions/auth';
+
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
+    const authLinks = (
+        <Fragment>
+            <li className="nav-item">
+                <a href="/dashboard" className="btn btn-primary">
+                    <i class="far fa-tachometer-alt-fast" />&nbsp;&nbsp;Dashboard
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="#!"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    Welcome, {user ? user.username : 'Anonymous user'}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#!">
+                        <i class="far fa-user" />
+                        &nbsp;&nbsp;Profile
+                    </a>
+                    <div class="dropdown-divider" />
+                    <a onClick={logout} class="dropdown-item text-danger" href="#!">
+                        <i class="far fa-power-off" />
+                        &nbsp;&nbsp;Logout
+                    </a>
+                </div>
+            </li>
+        </Fragment>
+    );
+    const guestLinks = (
+        <Fragment>
+            <li className="nav-item">
+                <Link className="btn btn-primary" to="/register">
+                    Sign up
+                </Link>
+            </li>
+            <li>
+                <Link className="nav-link" to="/login">
+                    Login
+                </Link>
+            </li>
+        </Fragment>
+    );
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
@@ -36,16 +87,7 @@ const Navbar = () => {
                     </ul>
 
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <Link className="btn btn-primary" to="/register">
-                                Sign up
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="nav-link" to="/login">
-                                Login
-                            </Link>
-                        </li>
+                        {!loading && <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>}
                     </ul>
                 </div>
             </div>
@@ -53,4 +95,12 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+Navbar.prototype = {
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);
