@@ -44,6 +44,7 @@ export class Login extends Component {
                                 name="email"
                                 onChange={this.onChange}
                                 value={email}
+                                autoFocus
                                 required
                             />
                         </div>

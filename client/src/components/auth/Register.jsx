@@ -37,7 +37,7 @@ export class Register extends Component {
 
     render() {
         if (this.props.isAuthenticated) {
-            return <Redirect to="/" />;
+            return <Redirect to="/dashboard" />;
         }
         const { username, email, password, password2 } = this.state;
 
@@ -55,6 +55,7 @@ export class Register extends Component {
                                 name="username"
                                 onChange={this.onChange}
                                 value={username}
+                                autoFocus
                                 required
                             />
                         </div>
