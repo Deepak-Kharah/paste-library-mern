@@ -74,7 +74,7 @@ router.post('/', [ optToken, [ check('text', 'Text is required').not().isEmpty()
 // @access  Public (with restriction)
 router.get('/:slug', optToken, async (req, res) => {
     try {
-        let dump = await await Dump.findOne({ slug: req.params.slug });
+        let dump = await Dump.findOne({ slug: req.params.slug });
 
         if (!dump) {
             return res.status(404).jsono({ errors: [ { msg: 'Dump not fund' } ] });
@@ -98,6 +98,23 @@ router.get('/:slug', optToken, async (req, res) => {
         }
 
         return res.json(dump);
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json({ msg: 'Server Error' });
+    }
+});
+
+// @route   GET api/d/
+// @desc    get all dump of current user
+// @access  Public (with restriction)
+router.get('/', auth, async (req, res) => {
+    try {
+        const dumps = await Dump.find({ user: req.user.id });
+
+        if (!dumps) {
+            return res.status(404).json({ errors: { msg: 'Dump not found' } });
+        }
+        return res.json(dumps);
     } catch (err) {
         console.error(err.message);
         return res.status(500).json({ msg: 'Server Error' });
