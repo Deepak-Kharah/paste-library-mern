@@ -9,13 +9,13 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     const authLinks = (
         <Fragment>
             <li className="nav-item">
-                <a href="/dashboard" className="btn btn-primary">
-                    <i class="far fa-tachometer-alt-fast" />&nbsp;&nbsp;Dashboard
-                </a>
+                <Link to="/dashboard" className="btn btn-primary">
+                    <i className="far fa-tachometer-alt-fast" />&nbsp;&nbsp;Dashboard
+                </Link>
             </li>
-            <li class="nav-item dropdown">
+            <li className="nav-item dropdown">
                 <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#!"
                     id="navbarDropdown"
                     role="button"
@@ -23,16 +23,16 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                     aria-haspopup="true"
                     aria-expanded="false"
                 >
-                    Welcome, {user ? user.username : 'Anonymous user'}
+                    Welcome, {user && user.username}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#!">
-                        <i class="far fa-user" />
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <Link className="dropdown-item" to="/profile">
+                        <i className="far fa-user" />
                         &nbsp;&nbsp;Profile
-                    </a>
-                    <div class="dropdown-divider" />
-                    <a onClick={logout} class="dropdown-item text-danger" href="#!">
-                        <i class="far fa-power-off" />
+                    </Link>
+                    <div className="dropdown-divider" />
+                    <a onClick={logout} className="dropdown-item text-danger" href="#!">
+                        <i className="far fa-power-off" />
                         &nbsp;&nbsp;Logout
                     </a>
                 </div>
