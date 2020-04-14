@@ -39,7 +39,7 @@ const DumpSchema = mongoose.Schema(
             required: true
         }
     },
-    { timestamp: true }
+    { timestamps: true }
 );
 
 module.exports = Dump = mongoose.model('dump', DumpSchema);

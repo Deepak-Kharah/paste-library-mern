@@ -106,7 +106,7 @@ router.get('/:slug', optToken, async (req, res) => {
 
 // @route   GET api/d/
 // @desc    get all dump of current user
-// @access  Public (with restriction)
+// @access  Private
 router.get('/', auth, async (req, res) => {
     try {
         const dumps = await Dump.find({ user: req.user.id });
