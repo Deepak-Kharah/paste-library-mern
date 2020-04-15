@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import Moment from 'react-moment';
+// import { Link } from 'react-router-dom';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 import Loading from '../layout/Loading';
@@ -42,30 +42,36 @@ class Dumps extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {dumps.map((dump) => (
-                                <tr key={dump._id}>
-                                    <th scopr="row">{dump.title || '-'}</th>
-                                    <td>{dump.text.length > 50 ? dump.text.slice(0, 50) + '...' : dump.text}</td>
-                                    <td className="slug">
-                                        <CopyToClipboard text={<Link to="/profile" />}>
-                                            <span
-                                                type="button"
-                                                data-toggle="tooltip"
-                                                data-html="true"
-                                                title="Click to Copy"
+                            {dumps.map((dump) => {
+                                return (
+                                    <tr key={dump._id}>
+                                        <th scopr="row">{dump.title || '-'}</th>
+                                        <td>{dump.text.length > 50 ? dump.text.slice(0, 50) + '...' : dump.text}</td>
+                                        <td className="slug">
+                                            <CopyToClipboard
+                                                text={`${window
+                                                    ? window.location.protocol + '//' + window.location.host
+                                                    : ''}/d/${dump.slug}`}
                                             >
-                                                {dump.slug}
-                                            </span>
-                                        </CopyToClipboard>
-                                    </td>
-                                    <td className="text-muted small">
-                                        <Moment fromNow>{dump.updatedAt}</Moment>
-                                    </td>
-                                    <td className="text-muted small">
-                                        <Moment fromNow>{dump.expiration_date}</Moment>
-                                    </td>
-                                </tr>
-                            ))}
+                                                <span
+                                                    type="button"
+                                                    data-toggle="tooltip"
+                                                    data-html="true"
+                                                    title="Click to Copy"
+                                                >
+                                                    {dump.slug}
+                                                </span>
+                                            </CopyToClipboard>
+                                        </td>
+                                        <td className="text-muted small">
+                                            <Moment fromNow>{dump.updatedAt}</Moment>
+                                        </td>
+                                        <td className="text-muted small">
+                                            <Moment fromNow>{dump.expiration_date}</Moment>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
