@@ -7,14 +7,18 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <h1>Dashboard</h1>
                 <br />
-                <h2 className="title">Create new dump</h2>
-                <div className="md-04">
+                <h1>Dashboard</h1>
+                <div className="mt-5">
+                    <h2 className="title">Create new dump</h2>
+                    <br />
                     <DumpForm />
                 </div>
-                <h2 className="title">My Dumps</h2>
-                <Dumps />
+                <div className="mt-5">
+                    <h2 className="title">My Dumps</h2>
+                    <br />
+                    <Dumps />
+                </div>
             </div>
         );
     }

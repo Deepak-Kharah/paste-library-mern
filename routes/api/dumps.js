@@ -74,26 +74,27 @@ router.post('/', [ optToken, [ check('text', 'Text is required').not().isEmpty()
 // @access  Public (with restriction)
 router.get('/:slug', optToken, async (req, res) => {
     try {
-        let dump = await Dump.findOne({ slug: req.params.slug });
+        const dump = await Dump.findOne({ slug: req.params.slug }).populate('user', [ 'id', 'username' ]);
+
+        console.log(dump);
 
         if (!dump) {
-            return res.status(404).jsono({ errors: [ { msg: 'Dump not fund' } ] });
+            return res.status(404).json({ errors: [ { msg: 'Dump not fund' } ] });
         }
-
-        dump.toObject();
 
         if (dump.access === 'PVT') {
             if (!req.user) {
                 console.error('anonoym user');
                 return res.status(404).json({ errors: [ { msg: 'Dump not found' } ] });
             }
-            if (dump.user.toString() !== req.user.id) {
+            if (dump.user.id.toString() !== req.user.id) {
                 console.error('unknown user');
                 return res.status(404).json({ errors: [ { msg: 'Dump not found' } ] });
             }
         }
 
         if (dump.password) {
+            // dump.toObject();
             // TODO logic remaining for password in dump
         }
 

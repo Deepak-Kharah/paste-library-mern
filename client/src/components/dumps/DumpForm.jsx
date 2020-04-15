@@ -32,7 +32,7 @@ class DumpForm extends Component {
         const isDisabled = isLoading || !isAuthenticated;
         return (
             <div>
-                <div className="card card-body mt-5">
+                <div className="card card-body">
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>title</label>

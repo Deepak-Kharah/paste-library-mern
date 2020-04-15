@@ -14,7 +14,8 @@ const DumpSchema = mongoose.Schema(
             type: String
         },
         user: {
-            type: mongoose.Schema.Types.ObjectId
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user'
         },
         access: {
             type: String,
