@@ -41,7 +41,7 @@ class App extends Component {
                             <Route exact path="/contact-us" component={ContactUs} />
                             <Route exact path="/about" component={About} />
                             <PrivateRoute exact path="/profile" component={Profile} />
-                            <Route exact path="/dashboard" component={Dashboard} />
+                            <PrivateRoute exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/test" component={Loading} />
                         </Switch>
                     </div>

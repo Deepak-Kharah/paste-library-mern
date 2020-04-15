@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+
+.slug {
+    font-family: 'Source Code Pro', monospace;
+    padding: 0px;
+    margin: 0px;
+    transition: all .2s ease-in-out;
+}
+
+.slug:hover {
+    transform: scale(1.1);
+}

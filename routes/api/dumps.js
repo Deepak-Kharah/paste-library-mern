@@ -109,7 +109,7 @@ router.get('/:slug', optToken, async (req, res) => {
 // @access  Private
 router.get('/', auth, async (req, res) => {
     try {
-        const dumps = await Dump.find({ user: req.user.id });
+        const dumps = await Dump.find({ user: req.user.id }).sort({ updatedAt: -1 });
 
         if (!dumps) {
             return res.status(404).json({ errors: { msg: 'Dump not found' } });
