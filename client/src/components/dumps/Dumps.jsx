@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 import Loading from '../layout/Loading';
@@ -32,7 +32,7 @@ class Dumps extends Component {
         ) : (
             <div>
                 <div className="table-responsive-sm">
-                    <table className="table table-hover table-striped" style={{}}>
+                    <table className="table table-hover table-striped">
                         <thead className="thead-dark">
                             <tr>
                                 <th scope="col">Title</th>
@@ -60,12 +60,7 @@ class Dumps extends Component {
                                                     ? window.location.protocol + '//' + window.location.host
                                                     : ''}/d/${dump.slug}`}
                                             >
-                                                <span
-                                                    type="button"
-                                                    data-toggle="tooltip"
-                                                    data-html="true"
-                                                    title="Click to Copy"
-                                                >
+                                                <span data-toggle="tooltip" data-html="true" title="Click to Copy">
                                                     {dump.slug}
                                                 </span>
                                             </CopyToClipboard>

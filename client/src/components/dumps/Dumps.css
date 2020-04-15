@@ -10,3 +10,7 @@
 .slug:hover {
     transform: scale(1.1);
 }
+
+[data-toggle="tooltip"] {
+    cursor: pointer;
+}

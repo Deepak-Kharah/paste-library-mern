@@ -1,0 +1,21 @@
+.card-subtitle span {
+    transition: color .1s ease-in-out;
+}
+
+.card-subtitle span:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.card-subtitle span:hover {
+    cursor: pointer;
+}
+
+.access-method-unlisted:hover {
+    color: #73d673;
+}
+.access-method-private:hover {
+    color: #ff6961;
+}
+.card-subtitle span:hover:not(#access-method) {
+    color: black;
+}

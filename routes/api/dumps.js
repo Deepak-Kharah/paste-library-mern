@@ -76,8 +76,6 @@ router.get('/:slug', optToken, async (req, res) => {
     try {
         const dump = await Dump.findOne({ slug: req.params.slug }).populate('user', [ 'id', 'username' ]);
 
-        console.log(dump);
-
         if (!dump) {
             return res.status(404).json({ errors: [ { msg: 'Dump not fund' } ] });
         }

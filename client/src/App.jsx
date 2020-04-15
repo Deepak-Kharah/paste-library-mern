@@ -12,9 +12,9 @@ import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import Profile from './components/profile/Profile';
 import PrivateRoute from './components/routing/PrivateRoute';
+import Dump from './components/dumps/Dump';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
-import Loading from './components/layout/Loading';
 
 import store from './store';
 
@@ -40,9 +40,10 @@ class App extends Component {
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/contact-us" component={ContactUs} />
                             <Route exact path="/about" component={About} />
+                            {/* <Route exact path="/test" component={Loading} /> */}
+                            <Route exact path="/d/:slug" component={Dump} />
                             <PrivateRoute exact path="/profile" component={Profile} />
                             <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                            <Route exact path="/test" component={Loading} />
                         </Switch>
                     </div>
                 </Router>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_DUMPS, DUMP_ERROR, CREATE_DUMP } from './types';
+import { GET_DUMPS, DUMP_ERROR, CREATE_DUMP, GET_DUMP } from './types';
 import { setAlert } from './alert';
 
 // Get user dumps
@@ -37,6 +37,24 @@ export const createDump = (formData) => async (dispatch) => {
         });
 
         dispatch(setAlert('New paste dump created', 'success'));
+    } catch (err) {
+        dispatch({
+            type: DUMP_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+};
+
+// Get dump by slug
+export const getDump = (slug) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/api/d/${slug}`);
+        console.log(res);
+
+        dispatch({
+            type: GET_DUMP,
+            payload: res.data
+        });
     } catch (err) {
         dispatch({
             type: DUMP_ERROR,
