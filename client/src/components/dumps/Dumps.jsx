@@ -27,18 +27,25 @@ class Dumps extends Component {
         const { dump: { dumps, loading } } = this.props;
         return loading ? (
             <Loading />
+        ) : dumps.length === 0 ? (
+            <div className="text-center text-small">You do not have any paste dump yet</div>
         ) : (
             <div>
-                <h1 className="title">My Dumps</h1>
                 <div className="table-responsive-sm">
                     <table className="table table-hover table-striped" style={{}}>
                         <thead className="thead-dark">
                             <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">URL</th>
-                                <th scope="col">Last updated</th>
-                                <th scope="col">Expires</th>
+                                <th scope="col" className="text-center">
+                                    URL
+                                </th>
+                                <th scope="col" className="text-center">
+                                    Last updated
+                                </th>
+                                <th scope="col" className="text-center">
+                                    Expires
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,7 +54,7 @@ class Dumps extends Component {
                                     <tr key={dump._id}>
                                         <th scopr="row">{dump.title || '-'}</th>
                                         <td>{dump.text.length > 50 ? dump.text.slice(0, 50) + '...' : dump.text}</td>
-                                        <td className="slug">
+                                        <td className="slug text-center">
                                             <CopyToClipboard
                                                 text={`${window
                                                     ? window.location.protocol + '//' + window.location.host
@@ -63,10 +70,10 @@ class Dumps extends Component {
                                                 </span>
                                             </CopyToClipboard>
                                         </td>
-                                        <td className="text-muted small">
+                                        <td className="text-muted small text-center">
                                             <Moment fromNow>{dump.updatedAt}</Moment>
                                         </td>
-                                        <td className="text-muted small">
+                                        <td className="text-muted small text-center">
                                             <Moment fromNow>{dump.expiration_date}</Moment>
                                         </td>
                                     </tr>

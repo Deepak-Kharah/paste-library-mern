@@ -1,4 +1,4 @@
-import { GET_DUMPS, DUMP_ERROR, CLEAR_DUMPS } from '../actions/types';
+import { GET_DUMPS, DUMP_ERROR, CLEAR_DUMPS, CREATE_DUMP } from '../actions/types';
 
 const initialState = {
     dumps: [],
@@ -27,6 +27,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 dumps: null,
+                loading: false
+            };
+        case CREATE_DUMP:
+            return {
+                ...state,
+                dumps: [ payload, ...state.dumps ],
                 loading: false
             };
         default:
