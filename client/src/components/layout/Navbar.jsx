@@ -31,10 +31,10 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         &nbsp;&nbsp;Profile
                     </NavLink>
                     <div className="dropdown-divider" />
-                    <a onClick={logout} className="dropdown-item text-danger" href="#!">
+                    <Link to="/" onClick={logout} className="dropdown-item text-danger" href="#!">
                         <i className="far fa-power-off" />
                         &nbsp;&nbsp;Logout
-                    </a>
+                    </Link>
                 </div>
             </li>
         </Fragment>
