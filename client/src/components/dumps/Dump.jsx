@@ -15,14 +15,12 @@ class Dump extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props.match.params.slug);
         this.props.getDump(this.props.match.params.slug);
     }
 
     render() {
         const { dump, loading } = this.props.dump;
-        console.log(dump, loading);
-        return loading ? (
+        return loading || !dump ? (
             <Loading />
         ) : (
             <Fragment>

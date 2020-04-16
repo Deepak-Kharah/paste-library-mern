@@ -65,6 +65,4 @@ export const getDump = (slug) => async (dispatch) => {
 };
 
 // Clear dump
-export const clearDump = () => async (dispatch) => {
-    dispatch({ type: CLEAR_DUMP });
-};
+export const clearDump = () => async (dispatch) => dispatch({ type: CLEAR_DUMP });
