@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import { getDump } from '../../actions/dump';
 import Loading from '../layout/Loading';
@@ -14,12 +15,13 @@ class Dump extends Component {
     };
 
     componentDidMount() {
+        console.log(this.props.match.params.slug);
         this.props.getDump(this.props.match.params.slug);
-        console.log('i was run');
     }
 
     render() {
-        const { dump: { dump, loading } } = this.props;
+        const { dump, loading } = this.props.dump;
+        console.log(dump, loading);
         return loading ? (
             <Loading />
         ) : (
@@ -61,6 +63,11 @@ class Dump extends Component {
                                 )}
                             </span>
                         </div>
+                        <CopyToClipboard text={`${dump.title ? dump.title.toString() + '\n' : ''}${dump.text}`}>
+                            <button className="btn btn-outline-primary btn-sm my-2  card-subtitle">
+                                <i className="far fa-copy" /> copy
+                            </button>
+                        </CopyToClipboard>
                         <br />
                         <p className="card-text text-justify">{dump.text}</p>
                     </div>

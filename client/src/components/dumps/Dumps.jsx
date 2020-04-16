@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 import Loading from '../layout/Loading';
@@ -52,8 +52,16 @@ class Dumps extends Component {
                             {dumps.map((dump) => {
                                 return (
                                     <tr key={dump._id}>
-                                        <th scopr="row">{dump.title || '-'}</th>
-                                        <td>{dump.text.length > 50 ? dump.text.slice(0, 50) + '...' : dump.text}</td>
+                                        <th scope="row">
+                                            <Link className="text-reset link-unstyled" to={`/d/${dump.slug}`}>
+                                                {dump.title || '-'}
+                                            </Link>
+                                        </th>
+                                        <td>
+                                            <Link className="text-reset link-unstyled" to={`/d/${dump.slug}`}>
+                                                {dump.text.length > 50 ? dump.text.slice(0, 50) + '...' : dump.text}
+                                            </Link>
+                                        </td>
                                         <td className="slug text-center">
                                             <CopyToClipboard
                                                 text={`${window

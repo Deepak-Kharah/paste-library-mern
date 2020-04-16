@@ -13,5 +13,6 @@ export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const GET_DUMPS = 'GET_DUMPS';
 export const DUMP_ERROR = 'DUMP_ERROR';
 export const CLEAR_DUMPS = 'CLEAR_DUMPS';
+export const CLEAR_DUMP = 'CLEAR_DUMP';
 export const CREATE_DUMP = 'CREATE_DUMP';
 export const GET_DUMP = 'GET_DUMP';
