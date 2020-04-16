@@ -1,4 +1,12 @@
-import { GET_DUMPS, DUMP_ERROR, CLEAR_DUMPS, CREATE_DUMP, GET_DUMP, CLEAR_DUMP } from '../actions/types';
+import {
+    GET_DUMPS,
+    DUMP_ERROR,
+    CLEAR_DUMPS,
+    CREATE_DUMP,
+    GET_DUMP,
+    CLEAR_DUMP,
+    CLEAR_DUMP_ERROR
+} from '../actions/types';
 
 const initialState = {
     dumps: [],
@@ -28,9 +36,10 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 dumps: [],
-                loading: true,
+                dump: null,
                 newDump: null,
-                dump: null
+                loading: true,
+                error: {}
             };
         case CREATE_DUMP:
             return {
@@ -45,7 +54,12 @@ export default (state = initialState, action) => {
                 newDump: null,
                 loading: false
             };
-
+        case CLEAR_DUMP_ERROR:
+            return {
+                ...state,
+                loading: true,
+                error: []
+            };
         case GET_DUMP:
             return {
                 ...state,

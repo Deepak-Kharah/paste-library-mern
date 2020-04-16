@@ -17,7 +17,8 @@ class DumpForm extends Component {
     static propTypes = {
         createDump: PropTypes.func.isRequired,
         clearDump: PropTypes.func.isRequired,
-        dump: PropTypes.object.isRequired
+        dump: PropTypes.object.isRequired,
+        auth: PropTypes.object.isRequired
     };
 
     componentDidMount() {
@@ -93,7 +94,7 @@ class DumpForm extends Component {
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary">
-                                Post
+                                Post {!isAuthenticated && 'Anonymously'}
                             </button>
                         </div>
                         {loading || !newDump ? (

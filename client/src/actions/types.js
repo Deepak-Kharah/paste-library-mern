@@ -16,3 +16,4 @@ export const CLEAR_DUMPS = 'CLEAR_DUMPS';
 export const CLEAR_DUMP = 'CLEAR_DUMP';
 export const CREATE_DUMP = 'CREATE_DUMP';
 export const GET_DUMP = 'GET_DUMP';
+export const CLEAR_DUMP_ERROR = 'CLEAR_DUMP_ERROR';

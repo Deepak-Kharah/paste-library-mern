@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_DUMPS, DUMP_ERROR, CREATE_DUMP, GET_DUMP, CLEAR_DUMP } from './types';
+import { GET_DUMPS, DUMP_ERROR, CREATE_DUMP, GET_DUMP, CLEAR_DUMP, CLEAR_DUMP_ERROR } from './types';
 import { setAlert } from './alert';
 
 // Get user dumps
@@ -66,3 +66,6 @@ export const getDump = (slug) => async (dispatch) => {
 
 // Clear dump
 export const clearDump = () => async (dispatch) => dispatch({ type: CLEAR_DUMP });
+
+//
+export const clearDumpError = () => async (dispatch) => dispatch({ type: CLEAR_DUMP_ERROR });
