@@ -27,8 +27,10 @@ export default (state = initialState, action) => {
         case CLEAR_DUMPS:
             return {
                 ...state,
-                dumps: null,
-                loading: false
+                dumps: [],
+                loading: true,
+                newDump: null,
+                dump: null
             };
         case CREATE_DUMP:
             return {

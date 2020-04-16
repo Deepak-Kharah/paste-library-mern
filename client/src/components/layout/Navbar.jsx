@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,9 +9,9 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     const authLinks = (
         <Fragment>
             <li className="nav-item">
-                <Link to="/dashboard" className="btn btn-primary">
+                <NavLink activeClassName="active" to="/dashboard" className="btn btn-primary">
                     <i className="far fa-tachometer-alt-fast" />&nbsp;&nbsp;Dashboard
-                </Link>
+                </NavLink>
             </li>
             <li className="nav-item dropdown">
                 <a
@@ -26,10 +26,10 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                     Welcome, {user && user.username}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <Link className="dropdown-item" to="/profile">
+                    <NavLink activeClassName="active" className="dropdown-item" to="/profile">
                         <i className="far fa-user" />
                         &nbsp;&nbsp;Profile
-                    </Link>
+                    </NavLink>
                     <div className="dropdown-divider" />
                     <a onClick={logout} className="dropdown-item text-danger" href="#!">
                         <i className="far fa-power-off" />
@@ -42,14 +42,14 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     const guestLinks = (
         <Fragment>
             <li className="nav-item">
-                <Link className="btn btn-primary" to="/register">
+                <NavLink activeClassName="active" className="btn btn-outline-success" to="/register">
                     Sign up
-                </Link>
+                </NavLink>
             </li>
             <li>
-                <Link className="nav-link" to="/login">
+                <NavLink activeClassName="active" className="nav-link" to="/login">
                     Login
-                </Link>
+                </NavLink>
             </li>
         </Fragment>
     );
@@ -76,14 +76,14 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about">
+                            <NavLink activeClassName="active" className="nav-link" to="/about">
                                 About
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="nav-link" to="/contact-us">
+                            <NavLink activeClassName="active" className="nav-link" to="/contact-us">
                                 Contact us
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
 
