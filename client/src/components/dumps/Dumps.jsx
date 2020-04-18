@@ -102,9 +102,9 @@ class Dumps extends Component {
                                                     <i className="far fa-ellipsis-v" />
                                                 </a>
                                                 <div className="dropdown-menu">
-                                                    <a className="dropdown-item text-primary" href="#!">
+                                                    {/* <a className="dropdown-item text-primary" href="#!">
                                                         <i className="far fa-edit" /> Edit
-                                                    </a>
+                                                    </a> */}
                                                     <a
                                                         className="dropdown-item text-danger"
                                                         data-toggle="modal"

@@ -79,9 +79,9 @@ class Dump extends Component {
 
                             {!isLoading && isAuthenticated && dump.user.id === user.id ? (
                                 <div className="btn-group ml-3" role="group">
-                                    <button className="btn btn-sm btn-outline-primary">
+                                    {/* <button className="btn btn-sm btn-outline-primary">
                                         <i className="far fa-edit" /> Edit
-                                    </button>
+                                    </button> */}
                                     <button
                                         className="btn btn-sm btn-outline-danger"
                                         data-toggle="modal"
