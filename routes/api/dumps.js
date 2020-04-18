@@ -120,12 +120,12 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-// @route   DELETE api/d/:slug
-// @desc    delete dump by slug
+// @route   DELETE api/d/:id
+// @desc    delete dump by id
 // @access  Private
-router.delete('/:slug', auth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
-        const dump = await Dump.findOne({ slug: req.params.slug });
+        const dump = await Dump.findById(req.params.id);
 
         if (!dump) {
             return res.status(404).json({ msg: 'Dump not found' });
@@ -139,6 +139,7 @@ router.delete('/:slug', auth, async (req, res) => {
         }
 
         await dump.remove();
+        console.log('deleted');
         return res.json({ msg: 'post deleted' });
     } catch (err) {
         console.error(err.message);

@@ -10,7 +10,13 @@ import { getDumps } from '../../actions/dump';
 import setAuthToken from '../../utils/setAuthToken';
 import './Dumps.css';
 
+import DeleteModal from './DeleteModal';
+
 class Dumps extends Component {
+    state = {
+        dumpId: null
+    };
+
     componentDidMount() {
         if (localStorage.token) {
             setAuthToken(localStorage.token);
@@ -21,6 +27,10 @@ class Dumps extends Component {
     static propTypes = {
         dump: PropTypes.object.isRequired,
         getDumps: PropTypes.func.isRequired
+    };
+
+    deleteConfirmInfo = (id) => {
+        this.setState({ dumpId: id });
     };
 
     render() {
@@ -46,6 +56,7 @@ class Dumps extends Component {
                                 <th scope="col" className="text-center">
                                     Expires
                                 </th>
+                                <th />
                             </tr>
                         </thead>
                         <tbody>
@@ -79,11 +90,39 @@ class Dumps extends Component {
                                         <td className="text-muted small text-center">
                                             <Moment fromNow>{dump.expiration_date}</Moment>
                                         </td>
+                                        <td>
+                                            <div className="dropleft">
+                                                <a
+                                                    className="pointer"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false"
+                                                    href="#!"
+                                                >
+                                                    <i className="far fa-ellipsis-v" />
+                                                </a>
+                                                <div className="dropdown-menu">
+                                                    <a className="dropdown-item text-primary" href="#!">
+                                                        <i className="far fa-edit" /> Edit
+                                                    </a>
+                                                    <a
+                                                        className="dropdown-item text-danger"
+                                                        data-toggle="modal"
+                                                        data-target="#deleteModal"
+                                                        href="#!"
+                                                        onClick={this.deleteConfirmInfo.bind(null, dump._id)}
+                                                    >
+                                                        <i className="far fa-trash-alt" /> Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 );
                             })}
                         </tbody>
                     </table>
+                    <DeleteModal deleteId={this.state.dumpId} />
                 </div>
             </div>
         );

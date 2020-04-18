@@ -5,7 +5,8 @@ import {
     CREATE_DUMP,
     GET_DUMP,
     CLEAR_DUMP,
-    CLEAR_DUMP_ERROR
+    CLEAR_DUMP_ERROR,
+    DELETE_DUMP
 } from '../actions/types';
 
 const initialState = {
@@ -65,6 +66,13 @@ export default (state = initialState, action) => {
                 ...state,
                 dump: payload,
                 loading: false
+            };
+        case DELETE_DUMP:
+            return {
+                ...state,
+                loading: false,
+                dumps: state.dumps.filter((dump) => dump._id !== payload),
+                dump: null
             };
         default:
             return state;

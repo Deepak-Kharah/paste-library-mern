@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_DUMPS, DUMP_ERROR, CREATE_DUMP, GET_DUMP, CLEAR_DUMP, CLEAR_DUMP_ERROR } from './types';
+import { GET_DUMPS, DUMP_ERROR, CREATE_DUMP, GET_DUMP, CLEAR_DUMP, CLEAR_DUMP_ERROR, DELETE_DUMP } from './types';
 import { setAlert } from './alert';
 
 // Get user dumps
@@ -60,6 +60,25 @@ export const getDump = (slug) => async (dispatch) => {
             type: GET_DUMP,
             payload: res.data
         });
+    } catch (err) {
+        dispatch({
+            type: DUMP_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+};
+
+// Delete dump by id
+export const deleteDump = (id) => async (dispatch) => {
+    try {
+        await axios.delete(`/api/d/${id}`);
+
+        dispatch({
+            type: DELETE_DUMP,
+            payload: id
+        });
+
+        dispatch(setAlert('Dump Removed', 'success'));
     } catch (err) {
         dispatch({
             type: DUMP_ERROR,

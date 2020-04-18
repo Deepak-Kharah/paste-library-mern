@@ -1,3 +1,7 @@
+.card {
+    min-height: 50vh;
+}
+
 .card-subtitle span {
     transition: color .1s ease-in-out;
 }
