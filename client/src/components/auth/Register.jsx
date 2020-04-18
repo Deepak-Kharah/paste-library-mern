@@ -11,7 +11,8 @@ export class Register extends Component {
         username: '',
         email: '',
         password: '',
-        password2: ''
+        password2: '',
+        consent: false
     };
     static propTypes = {
         setAlert: PropTypes.func.isRequired,
@@ -20,12 +21,15 @@ export class Register extends Component {
     };
 
     onSubmit = async (e) => {
-        const { username, email, password, password2 } = this.state;
+        const { username, email, password, password2, consent } = this.state;
         e.preventDefault();
         if (!password || !password2) {
             this.props.setAlert('Password is required.');
         } else if (password !== password2) {
             this.props.setAlert('Password does not match', 'danger');
+            this.setState({ password: '', password2: '' });
+        } else if (!consent) {
+            this.props.setAlert('You must agree to terms and condition', 'danger');
         } else {
             this.props.register({ username, email, password });
         }
@@ -39,13 +43,13 @@ export class Register extends Component {
         if (this.props.isAuthenticated) {
             return <Redirect to="/dashboard" />;
         }
-        const { username, email, password, password2 } = this.state;
+        const { username, email, password, password2, consent } = this.state;
 
         return (
             <div className="col-md-6 m-auto">
                 <div className="card card-body mt-5">
                     <h2 className="text-center">Register</h2>
-                    <form onSubmit={this.onSubmit}>
+                    <form className="mt-2" onSubmit={this.onSubmit}>
                         <small className="text-danger">*every field is required</small> <br />
                         <div className="form-group">
                             <label>Username</label>
@@ -55,6 +59,7 @@ export class Register extends Component {
                                 name="username"
                                 onChange={this.onChange}
                                 value={username}
+                                placeholder="anonymous_user"
                                 autoFocus
                                 required
                             />
@@ -63,8 +68,9 @@ export class Register extends Component {
                             <label>Email</label>
                             <input
                                 type="email"
-                                name="email"
                                 className="form-control"
+                                name="email"
+                                placeholder="anonymoususer@example.com"
                                 onChange={this.onChange}
                                 value={email}
                                 required
@@ -90,8 +96,28 @@ export class Register extends Component {
                                 className="form-control"
                                 onChange={this.onChange}
                                 value={password2}
-                                // required
+                                required
                             />
+                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                Your password must be more than <span className="font-weight-bold">6 characters </span>
+                                long.
+                            </small>
+                        </div>
+                        <div className="form-group">
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={consent}
+                                    onChange={() => this.setState({ consent: !consent })}
+                                    // required
+                                />
+                                <label className="form-check-label text-justify">
+                                    I have read and agreed to{' '}
+                                    <Link to="/terms-and-condition">Terms and Conditions</Link> and{' '}
+                                    <Link to="/privacy-policy">Privacy policy</Link>.
+                                </label>
+                            </div>
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary">
@@ -99,7 +125,7 @@ export class Register extends Component {
                             </button>
                         </div>
                         <p>
-                            Already have an account? <Link to="/login">Login</Link>
+                            Already have an account? <Link to="/login">Login</Link>.
                         </p>
                     </form>
                 </div>

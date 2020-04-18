@@ -42,6 +42,7 @@ export class Login extends Component {
                                 type="email"
                                 className="form-control"
                                 name="email"
+                                placeholder="anonymoususer@example.com"
                                 onChange={this.onChange}
                                 value={email}
                                 autoFocus
@@ -65,7 +66,7 @@ export class Login extends Component {
                             </button>
                         </div>
                         <p>
-                            Don't have an account? <Link to="/register">Register</Link>
+                            Don't have an account? <Link to="/register">Register</Link>.
                         </p>
                     </form>
                 </div>

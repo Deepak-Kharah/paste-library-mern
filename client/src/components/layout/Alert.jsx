@@ -20,7 +20,7 @@ const Alert = ({ alerts }) =>
                     )
                 }
             />
-            {alert.msg}
+            <span className="ml-2">{alert.msg}</span>
         </div>
     ));
 
