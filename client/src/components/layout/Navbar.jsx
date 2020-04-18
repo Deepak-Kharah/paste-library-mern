@@ -54,7 +54,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         </Fragment>
     );
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-5">
             <div className="container">
                 <Link className="navbar-brand" to="/">
                     <span style={{ fontWeight: 'bold' }}>Paste</span>
@@ -74,7 +74,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
+                    {/* <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
                             <NavLink activeClassName="active" className="nav-link" to="/about">
                                 About
@@ -85,7 +85,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                                 Contact us
                             </NavLink>
                         </li>
-                    </ul>
+                    </ul> */}
 
                     <ul className="navbar-nav ml-auto">
                         {!loading && <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>}

@@ -65,7 +65,7 @@ const Footer = ({ auth: { isAuthenticated, isLoading } }) => {
                     <div className="col-xs-6 col-md-3">
                         <h6>Additional Links</h6>
                         <ul className="footer-links">
-                            <li>
+                            {/* <li>
                                 <Link to="/about">About</Link>
                             </li>
                             <li>
@@ -73,12 +73,18 @@ const Footer = ({ auth: { isAuthenticated, isLoading } }) => {
                             </li>
                             <li>
                                 <a href="#!">Contribute</a>
+                            </li> */}
+                            <li>
+                                <Link to="/cookie-policy">Cookie Policy</Link>
                             </li>
                             <li>
-                                <a href="{% url 'index:privacy-policy' %}">Privacy Policy</a>
+                                <Link to="/privacy-policy">Privacy Policy</Link>
                             </li>
                             <li>
-                                <a href="http://scanfcode.com/sitemap/">Sitemap</a>
+                                <Link to="/terms-and-policy">Terms and Conditions</Link>
+                            </li>
+                            <li>
+                                <a href="#!">Sitemap</a>
                             </li>
                         </ul>
                     </div>
