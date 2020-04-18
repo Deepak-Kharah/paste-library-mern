@@ -44,6 +44,10 @@ export const createDump = (formData) => async (dispatch) => {
             type: DUMP_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         });
+
+        if (err.response.status) {
+            dispatch(setAlert('Description field is not properly filled', 'danger'));
+        }
     }
 };
 

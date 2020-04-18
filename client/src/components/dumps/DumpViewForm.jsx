@@ -43,7 +43,7 @@ export class DumpViewForm extends Component {
             return <Redirect push to={`/d/${slug}`} target="_blank" />;
         }
         return (
-            <div className="mt-3">
+            <div id="getDumpForm" className="mt-3">
                 <form onSubmit={this.onSubmit}>
                     <div className="form-row">
                         <div className="form-group col">

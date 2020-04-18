@@ -17,6 +17,7 @@ import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 
 import store from './store';
+import Footer from './components/layout/Footer';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -46,6 +47,7 @@ class App extends Component {
                             <PrivateRoute exact path="/dashboard" component={Dashboard} />
                         </Switch>
                     </div>
+                    <Footer />
                 </Router>
             </Provider>
         );

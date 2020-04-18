@@ -41,7 +41,7 @@ class DumpForm extends Component {
         const { loading, newDump } = this.props.dump;
         const isDisabled = isLoading || !isAuthenticated;
         return (
-            <div>
+            <div id="createDumpForm">
                 <div className="card card-body">
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
@@ -63,7 +63,6 @@ class DumpForm extends Component {
                                 name="text"
                                 onChange={this.onChange}
                                 value={text}
-                                autoFocus
                                 required
                             />
                         </div>

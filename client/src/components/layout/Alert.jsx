@@ -7,6 +7,19 @@ const Alert = ({ alerts }) =>
     alerts.length > 0 &&
     alerts.map((alert) => (
         <div key={alert.id} className={`alert alert-${alert.alertType}`}>
+            <i
+                className={
+                    alert.alertType === 'danger' ? (
+                        'fas fa-exclamation'
+                    ) : alert.alertType === 'warning' ? (
+                        'far fa-regular'
+                    ) : alert.alertType === 'info' ? (
+                        'fas fa-info'
+                    ) : (
+                        'far fa-check'
+                    )
+                }
+            />
             {alert.msg}
         </div>
     ));
