@@ -40,7 +40,7 @@ class Dumps extends Component {
         ) : dumps.length === 0 ? (
             <div className="text-center text-small">You do not have any paste dump yet</div>
         ) : (
-            <div>
+            <div className="bg-white">
                 <div className="table-responsive-sm">
                     <table className="table table-hover table-striped">
                         <thead className="thead-dark">
