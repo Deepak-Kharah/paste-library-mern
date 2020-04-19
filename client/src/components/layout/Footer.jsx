@@ -81,7 +81,7 @@ const Footer = ({ auth: { isAuthenticated, isLoading } }) => {
                                 <Link to="/privacy-policy">Privacy Policy</Link>
                             </li>
                             <li>
-                                <Link to="/terms-and-policy">Terms and Conditions</Link>
+                                <Link to="/terms-and-condition">Terms and Conditions</Link>
                             </li>
                             <li>
                                 <a href="#!">Sitemap</a>

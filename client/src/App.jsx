@@ -16,6 +16,7 @@ import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import Dump from './components/dumps/Dump';
 import Profile from './components/profile/Profile';
+import NotFound from './components/error/NotFound';
 
 import About from './components/promotion/About';
 import ContactUs from './components/promotion/ContactUs';
@@ -44,8 +45,8 @@ class App extends Component {
                     <Navbar />
                     <div className="container">
                         <Alert />
-                        <Route exact path="/" component={Home} />
                         <Switch>
+                            <Route exact path="/" component={Home} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/contact-us" component={ContactUs} />
@@ -57,6 +58,7 @@ class App extends Component {
                             <Route exact path="/d/:slug" component={Dump} />
                             <PrivateRoute exact path="/profile" component={Profile} />
                             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                            <Route component={NotFound} />
                         </Switch>
                     </div>
                     <CookieConsent buttonClasses="btn btn-primary">
