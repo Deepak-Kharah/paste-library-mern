@@ -99,7 +99,7 @@ class Dumps extends Component {
                                                     aria-expanded="false"
                                                     href="#!"
                                                 >
-                                                    <i className="far fa-ellipsis-v" />
+                                                    <span className="p-2 font-weight-bold">⋮</span>
                                                 </a>
                                                 <div className="dropdown-menu">
                                                     {/* <a className="dropdown-item text-primary" href="#!">

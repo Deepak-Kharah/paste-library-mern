@@ -15,7 +15,7 @@ class Profile extends Component {
             <Fragment>
                 <br />
                 <br />
-                <div className="card" style={{ width: '50rem', margin: 'auto' }}>
+                <div className="card" style={{ maxWidth: '50rem', margin: '0 auto' }}>
                     <div className="card-body">
                         <h1 className="card-title">My profile</h1>
                         <hr />

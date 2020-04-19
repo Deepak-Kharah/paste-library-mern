@@ -23,3 +23,11 @@
 .link-unstyled:active:hover {
     text-decoration: none;
 }
+
+.pointer {
+    color: black;
+}
+
+.pointer:hover {
+    text-decoration: none;
+}
