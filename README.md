@@ -6,17 +6,17 @@ Paste library is a web-based paste bin like service that allows users to paste a
 
 # Table of content
 
-- [Paste Library](#paste-library)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Tech stack](#tech-stack)
-  - [Front end](#front-end)
-  - [Backend](#backend)
-  - [Database](#database)
-  - [Server](#server)
-- [Deployment](#deployment)
-- [Screenshots](#screenshots)
-- [License](#license)
+-   [Paste Library](#paste-library)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Tech stack](#tech-stack)
+    -   [Front end](#front-end)
+    -   [Backend](#backend)
+    -   [Database](#database)
+    -   [Server](#server)
+-   [Deployment](#deployment)
+-   [Screenshots](#screenshots)
+-   [License](#license)
 
 # Installation
 
@@ -93,22 +93,22 @@ Go to localhost:3000/ to view the project running and use it like any other web-
 
 # Tech stack
 
-## Front end
+### Front end
 
 -   HTML
 -   CSS
 -   ReactJS
 
-## Backend
+### Backend
 
 -   NodeJS
 -   ExpressJS
 
-## Database
+### Database
 
 -   MongoDB
 
-## Server
+### Server
 
 -   Heroku
 
