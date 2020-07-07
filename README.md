@@ -89,7 +89,7 @@ Paste library is a web-based paste bin like service that allows users to paste a
 
 Go to localhost:3000/ to view the project running and use it like any other web-application.
 
-![first look](non-project-files\readme_media\final-web-app-homepage.PNG)
+![first look](non-project-files/readme_media/final-web-app-homepage.PNG)
 
 # Tech stack
 
@@ -118,11 +118,11 @@ This web-application is deployed using [Heroku](https://heroku.com) under the do
 
 # Screenshots
 
-![screenshot of login page](non-project-files\readme_media\ss-login-page.png)
+![screenshot of login page](non-project-files/readme_media/ss-login-page.png)
 
-![screenshot of login page](non-project-files\readme_media\ss-register-page.png)
+![screenshot of login page](non-project-files/readme_media/ss-register-page.png)
 
-![screenshot of login page](non-project-files\readme_media\ss-dashboard.png)
+![screenshot of login page](non-project-files/readme_media/ss-dashboard.png)
 
 ![screenshot of login page](non-project-files/readme_media/ss-invalid-credentials.png)
 
