@@ -7,7 +7,7 @@
         "@testing-library/react": "^12.1.4",
         "@testing-library/user-event": "^7.2.1",
         "axios": "^0.21.4",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "react": "^16.13.1",
         "react-cookie-consent": "^3.0.0",
         "react-copy-to-clipboard": "^5.0.2",
