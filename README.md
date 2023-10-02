@@ -1,6 +1,6 @@
 # Paste Library
 
-[![GitHub license](https://img.shields.io/github/license/Deepak-Kharah/paste-library-mern?style=flat-square)](https://github.com/Deepak-Kharah/paste-library-mern) ![project status](https://img.shields.io/badge/project%20status-inactive-yellowgreen?style=flat-square&logo=) [![Website](https://img.shields.io/website?label=web%20app&style=flat-square&url=https%3A%2F%2Fpastelibrary.tk)](https://pastelibrary.tk)
+[![GitHub license](https://img.shields.io/github/license/Deepak-Kharah/paste-library-mern?style=flat-square)](https://github.com/Deepak-Kharah/paste-library-mern) ![project status](https://img.shields.io/badge/project%20status-archived-yellowgreen?style=flat-square&logo=)
 
 Paste library is a web-based paste bin like service that allows users to paste and share text. I made this app to explore the MERN stack. During the development, I learned how to generate and map a short URL to a set of data with the least collision. The aim was to achieve maximum convenience and privacy. So, the metric used was to complete the entire process within just two clicks.
 
@@ -29,7 +29,7 @@ Paste library is a web-based paste bin like service that allows users to paste a
 
     ```sh
     # to check if node.js exist
-    $ node -v
+    node -v
     ```
 
 4. Go to the cloned `paste-library-mern` folder in your local machine and open terminal.
@@ -37,10 +37,10 @@ Paste library is a web-based paste bin like service that allows users to paste a
 5. Enter following command to install dependencies for both backend and frontend
 
     ```sh
-    $ npm install
-    $ cd client # paste-library-mern/client
-    $ npm install
-    $ cd .. # paste-library-mern/
+    npm install
+    cd client # paste-library-mern/client
+    npm install
+    cd .. # paste-library-mern/
     ```
 
 6. Make a copy of `.env.example` and rename it `.env` in the same directory.
@@ -52,13 +52,13 @@ Paste library is a web-based paste bin like service that allows users to paste a
     ```sh
     # first terminal
     # paste-library-mern/
-    $ npm start
+    npm start
     ```
 
     ```sh
     # second terminal
-    $ cd client # paste-library-mern/client
-    $ npm start
+    cd client # paste-library-mern/client
+    npm start
     ```
 
     If successful you'll see this msg in the two terminals
